@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 
@@ -19,8 +20,8 @@ public class ClientController {
     private final ClientRepository repository;
 
     @GetMapping("/")
-    public String showList(Model model){
-        model.addAttribute("clients", repository.findAll());
+    public String showList(@RequestParam(defaultValue = "DEFAULT") SortBy sortBy, Model model) {
+        model.addAttribute("clients", getSortedList(sortBy));
         return "index";
     }
 
@@ -71,7 +72,21 @@ public class ClientController {
     }
 
     @GetMapping("/error")
-    public String showErrorPage(){
+    public String showErrorPage() {
         return "error";
     }
+
+    private Iterable<ClientEntity> getSortedList(SortBy sortBy) {
+        switch (sortBy) {
+            case NAME:
+                return repository.findAllAndOrderByName();
+            case EMAIL:
+                return repository.findAllAndOrderByEmail();
+            case PHONE:
+                return repository.findAllAndOrderByPhone();
+            default:
+                return repository.findAll();
+        }
+    }
+
 }
