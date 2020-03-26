@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/main.css"/>
+    <script src="js/bootstrap.min.js"></script>
+    <title>Clients</title>
+</head>
+<body class="text-center">
+<div class="container">
+    <h2 th:if="${clients eq null}" class="m-2">No clients yet!</h2>
+    <div th:if="${clients ne null}"  class="row justify-content-center">
+        <h2 class="m-6">List of clients</h2>
+        <table class="table text-left">
+            <thead class="thead-light col-6">
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Edit</th>
+                <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="client : ${clients}">
+                <td th:text="${client.name}"></td>
+                <td th:text="${client.phone}"></td>
+                <td><a th:href="@{/edit/{id} (id=${client.id})}">Edit</a></td>
+                <td><a th:href="@{/delete/{id} (id=${client.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/new" class="btn btn-primary">Add client</a></p>
+</div>
+</body>
+</html>
