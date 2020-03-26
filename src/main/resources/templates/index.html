@@ -48,7 +48,13 @@
             </tbody>
         </table>
     </div>
-    <p><a href="/new" class="btn btn-primary">Add client</a></p>
+    <div class="row justify-content-between">
+        <form action="#"  th:action="@{/search(q)}" class="form-inline" method="get">
+            <input type="text" class="form-control mr-2" id="search" placeholder="Search by phone no." aria-label="Search" th:name="q">
+            <button class="btn btn-primary ml-2" type="submit">Search</button>
+        </form>
+        <a  href="/new" class="btn btn-primary">Add client</a>
+    </div>
 </div>
 </body>
 </html>

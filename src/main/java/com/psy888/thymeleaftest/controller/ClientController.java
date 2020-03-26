@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
+import java.util.List;
+
+import static java.util.Objects.isNull;
 
 @Controller
 @RequiredArgsConstructor
@@ -20,8 +23,20 @@ public class ClientController {
     private final ClientRepository repository;
 
     @GetMapping("/")
-    public String showList(@RequestParam(defaultValue = "DEFAULT") SortBy sortBy, Model model) {
+    public String showList(
+            @RequestParam(defaultValue = "DEFAULT", required = false) SortBy sortBy,
+            Model model
+    ) {
         model.addAttribute("clients", getSortedList(sortBy));
+        return "index";
+    }
+
+    @GetMapping("/search")
+    public String search(
+            @RequestParam(defaultValue = "", required = false) String q,
+            Model model
+    ) {
+        model.addAttribute("clients", searchByPhone(q));
         return "index";
     }
 
@@ -89,4 +104,10 @@ public class ClientController {
         }
     }
 
+    private Iterable<ClientEntity> searchByPhone(String q) {
+        if(isNull(q)||q.isEmpty()){
+            return repository.findAll();
+        }
+        return repository.findByPhoneContaining(q);
+    }
 }

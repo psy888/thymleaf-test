@@ -19,4 +19,6 @@ public interface ClientRepository extends CrudRepository<ClientEntity, Long> {
 
     @Query("SELECT c FROM ClientEntity c ORDER BY c.email ASC")
     List<ClientEntity> findAllAndOrderByEmail();
+
+    List<ClientEntity> findByPhoneContaining(String query);
 }
