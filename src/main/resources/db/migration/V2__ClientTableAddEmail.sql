@@ -1,0 +1,1 @@
+ALTER TABLE public.client ADD COLUMN email text;

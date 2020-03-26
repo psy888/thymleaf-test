@@ -19,8 +19,13 @@
             </div>
             <div class="form-group text-left">
                 <label for="phone">Phone</label>
-                <input type="text" class="form-control" id="phone" placeholder="Phone" th:field="*{phone}">
+                <input type="text" class="form-control" id="phone" placeholder="+X(XXX)XXX-XX-XX" th:field="*{phone}">
                 <span class="invalid-feedback" th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}"></span>
+            </div>
+            <div class="form-group text-left">
+                <label for="email">E-mail</label>
+                <input type="text" class="form-control" id="email" placeholder="email@example.com" th:field="*{email}" >
+                <span class="invalid-feedback" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             </div>
             <div>
                 <input type="submit" value="Update client" class="btn btn-primary">

@@ -14,9 +14,11 @@ public class ClientEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @NotBlank(message="Clients's name is required")
+    @NotBlank(message = "Clients's name is required")
     private String name;
 
-    @NotBlank(message="Client's phone is required")
+    @NotBlank(message = "Client's phone is required")
     private String phone;
+
+    private String email;
 }

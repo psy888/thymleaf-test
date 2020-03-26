@@ -17,6 +17,7 @@
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Phone</th>
+                <th scope="col">Email</th>
                 <th scope="col">Edit</th>
                 <th scope="col">Delete</th>
             </tr>
@@ -25,6 +26,7 @@
             <tr th:each="client : ${clients}">
                 <td th:text="${client.name}"></td>
                 <td th:text="${client.phone}"></td>
+                <td th:text="${client.email}"></td>
                 <td><a th:href="@{/edit/{id} (id=${client.id})}">Edit</a></td>
                 <td><a th:href="@{/delete/{id} (id=${client.id})}">Delete</a></td>
             </tr>
