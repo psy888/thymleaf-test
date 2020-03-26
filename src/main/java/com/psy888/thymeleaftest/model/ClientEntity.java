@@ -2,14 +2,12 @@ package com.psy888.thymeleaftest.model;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 
 @Entity
 @Data
+@Table(name = "public.client")
 public class ClientEntity {
 
     @Id
