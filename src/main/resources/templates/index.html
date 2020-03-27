@@ -15,6 +15,7 @@
         <table class="table text-left">
             <thead class="thead-light col-6">
             <tr>
+                <th scope="col">#</th>
                 <th scope="col">Name<a class="ml-2 text-dark text-decoration-none" th:href="@{/(sortBy=NAME)}">
                     <svg class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                         <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 01.708 0L8 12.293l2.646-2.647a.5.5 0 01.708.708l-3 3a.5.5 0 01-.708 0l-3-3a.5.5 0 010-.708z" clip-rule="evenodd"/>
@@ -38,7 +39,8 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="client : ${clients}">
+            <tr th:each="client, iter : ${clients}">
+                <td th:text="${iter.count}"></td>
                 <td th:text="${client.name}"></td>
                 <td th:text="${client.phone}"></td>
                 <td th:text="${client.email}"></td>
